@@ -1,0 +1,68 @@
+[
+  {
+    "hashtag": "Phương trình tiếp tuyến",
+    "listLyThuyet": [
+      {
+        "noiDung": "Nội dung lý thuyết tóm tắt của Phương Trình Tiếp Tuyến do DamSanX cung cấp nằm ở chỗ này. Nội dung lý thuyết tóm tắt của Phương Trình Tiếp Tuyến do DamSanX cung cấp nằm ở chỗ này. Nội dung lý thuyết tóm tắt của Phương Trình Tiếp Tuyến do DamSanX cung cấp nằm ở chỗ này. Nội dung lý thuyết tóm tắt của Phương Trình Tiếp Tuyến do DamSanX cung cấp nằm ở chỗ này. Nội dung lý thuyết tóm tắt của Phương Trình Tiếp Tuyến do DamSanX cung cấp nằm ở chỗ này.",
+        "viDu": "S\u1ed1 ph\u1ee9c li\u00ean h\u1ee3p c\u1ee7a s\u1ed1 ph\u1ee9c $z= 2 + 3i$ l\u00e0 $\\overline{z}= 2 -3i$",
+        "listCauHoi": [
+          {
+            "cauHoi": "Cắt khối cầu $(S)$ bởi mặt phẳng đi qua tâm của nó ta được hình tròn có diện tích bằng $4\\pi a^2$. Thể tích của khối cầu $(S)$ bằng",
+            "dapAn": [
+              "A. $P_{\\min}=\\dfrac{18\\sqrt{11}-29}{9}$",
+              "B. $P_{\\min}=\\dfrac{9\\sqrt{11}-19}{9}$",
+              "C. $P_{\\min}=\\dfrac{9\\sqrt{11}+19}{9}$",
+              "D. $P_{\\min}=\\dfrac{2\\sqrt{11}-3}{3}$"
+            ],
+            "dapAnDung": "A",
+            "giaiThich": "S\u1ed1 ph\u1ee9c li\u00ean h\u1ee3p c\u1ee7a s\u1ed1 ph\u1ee9c $z= 10 + 3i$ l\u00e0 $\\overline{z}= 10 -3i$"
+          },
+          {
+            "cauHoi": "Cắt khối cầu $(S)$ bởi mặt phẳng đi qua tâm của nó ta được hình tròn có diện tích bằng $4\\pi a^2$. Thể tích của khối cầu $(S)$ bằng",
+            "dapAn": [
+              "A. $P_{\\min}=\\dfrac{18\\sqrt{11}-29}{9}$",
+              "B. $P_{\\min}=\\dfrac{9\\sqrt{11}-19}{9}$",
+              "C. $P_{\\min}=\\dfrac{9\\sqrt{11}+19}{9}$",
+              "D. $P_{\\min}=\\dfrac{2\\sqrt{11}-3}{3}$"
+            ],
+            "dapAnDung": "A",
+            "giaiThich": "S\u1ed1 ph\u1ee9c li\u00ean h\u1ee3p c\u1ee7a s\u1ed1 ph\u1ee9c $z= 10 + 3i$ l\u00e0 $\\overline{z}= 10 -3i$"
+          },
+          {
+            "cauHoi": "Cắt khối cầu $(S)$ bởi mặt phẳng đi qua tâm của nó ta được hình tròn có diện tích bằng $4\\pi a^2$. Thể tích của khối cầu $(S)$ bằng",
+            "dapAn": [
+              "A. $P_{\\min}=\\dfrac{18\\sqrt{11}-29}{9}$",
+              "B. $P_{\\min}=\\dfrac{9\\sqrt{11}-19}{9}$",
+              "C. $P_{\\min}=\\dfrac{9\\sqrt{11}+19}{9}$",
+              "D. $P_{\\min}=\\dfrac{2\\sqrt{11}-3}{3}$"
+            ],
+            "dapAnDung": "A",
+            "giaiThich": "S\u1ed1 ph\u1ee9c li\u00ean h\u1ee3p c\u1ee7a s\u1ed1 ph\u1ee9c $z= 10 + 3i$ l\u00e0 $\\overline{z}= 10 -3i$"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "hashtag": "Diện Tích Xung Quanh",
+    "listLyThuyet": [
+      {
+        "noiDung": "Đây là lý thuyết của phần diện tích xung quanh, lưu ý đây chỉ là đoạn text mẫu không có mục đích sử dụng.",
+        "viDu": "S\u1ed1 ph\u1ee9c li\u00ean h\u1ee3p c\u1ee7a s\u1ed1 ph\u1ee9c $z= 2 + 3i$ l\u00e0 $\\overline{z}= 2 -3i$",
+        "listCauHoi": [
+          {
+            "cauHoi": "Cắt khối cầu $(S)$ bởi mặt phẳng đi qua tâm của nó ta được hình tròn có diện tích bằng $4\\pi a^2$. Thể tích của khối cầu $(S)$ bằng",
+            "dapAn": [
+              "A. $P_{\\min}=\\dfrac{18\\sqrt{11}-29}{9}$",
+              "B. $P_{\\min}=\\dfrac{9\\sqrt{11}-19}{9}$",
+              "C. $P_{\\min}=\\dfrac{9\\sqrt{11}+19}{9}$",
+              "D. $P_{\\min}=\\dfrac{2\\sqrt{11}-3}{3}$"
+            ],
+            "dapAnDung": "A",
+            "giaiThich": "S\u1ed1 ph\u1ee9c li\u00ean h\u1ee3p c\u1ee7a s\u1ed1 ph\u1ee9c $z= 10 + 3i$ l\u00e0 $\\overline{z}= 10 -3i$"
+          }
+        ]
+      }
+    ]
+  }
+]

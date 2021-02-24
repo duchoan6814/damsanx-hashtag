@@ -1,3 +1,5 @@
+@import url("//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.9.0/katex.min.css");
+
 .header-of-content {
   display: flex;
 
@@ -12,6 +14,13 @@
 }
 
 .site-layout-content {
+
+  .two-button {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+  }
+
   h3 {
     font-style: normal;
     font-weight: bold;

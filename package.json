@@ -38,6 +38,9 @@
   "devDependencies": {
     "@ant-design/icons": "^4.5.0",
     "antd": "^4.12.3",
-    "node-sass": "^5.0.0"
+    "lodash": "^4.17.21",
+    "node-sass": "^5.0.0",
+    "react-latex": "^2.0.0",
+    "react-router-dom": "^5.2.0"
   }
 }

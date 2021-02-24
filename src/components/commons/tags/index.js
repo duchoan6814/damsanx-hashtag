@@ -11,9 +11,9 @@ const Tag = ({ content, select }) => {
   }, select)
 
   return (
-    <a className={`tag ${selected}`}>
+    <div className={`tag ${selected}`}>
       <p>{content}</p>
-    </a>
+    </div>
   );
 };
 
