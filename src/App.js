@@ -4,6 +4,9 @@ import { Layout, Menu, Button } from "antd";
 import './App.css';
 import './App.scss';
 import { ArrowLeftOutlined } from '@ant-design/icons';
+import Tag from './components/commons/tags';
+import ContentLyThuyet from "./components/contentLyThuyet";
+
 const { Header, Content, Footer } = Layout;
 
 function App() {
@@ -27,7 +30,15 @@ function App() {
             <p>Chương: Ứng dụng đạo hàm để khảo sát đồ thị hàm số &#x220E; Lớp 12</p>
           </div>
         </div>
-        <div className="site-layout-content">Content</div>
+        <div className="list-tag">
+          <Tag content="#Hello world" select={true} />
+          <Tag content="#Hello world" select={false} />
+          <Tag content="#Hello world" select={false} />
+        </div>
+        <div className="site-layout-content">
+          <ContentLyThuyet />
+          <h3>Bài tập:</h3>
+        </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
         Ant Design ©2018 Created by Ant UED

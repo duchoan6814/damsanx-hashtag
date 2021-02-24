@@ -1,8 +1,24 @@
-
 .header-of-content {
   display: flex;
-  
+
   .left-site {
     margin-right: 50px;
+  }
+}
+
+.list-tag {
+  margin-bottom: 16px;
+  display: flex;
+}
+
+.site-layout-content {
+  h3 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 150%;
+    /* identical to box height, or 24px */
+
+    color: rgba(0, 0, 0, 0.9);
   }
 }
