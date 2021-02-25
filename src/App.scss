@@ -11,6 +11,14 @@
 .list-tag {
   margin-bottom: 16px;
   display: flex;
+
+  a {
+    margin-left: 10px;
+
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+  }
 }
 
 .site-layout-content {

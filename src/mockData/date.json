@@ -10,7 +10,7 @@
             "cauHoi": "Tìm số phức liên hợp của $z= 10 + 3i$",
             "dapAn": [
               "A. $\\overline{z}= 10 -3i$",
-              "B. $\\overline{z}= 10 +3i$$",
+              "B. $\\overline{z}= 10 +3i$",
               "C. $\\overline{z}= 3 -10i$",
               "D. $\\overline{z}= 3 +10i$"
             ],

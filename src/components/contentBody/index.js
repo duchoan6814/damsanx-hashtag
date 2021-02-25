@@ -22,11 +22,12 @@ const ContentBody = ({ data }) => {
   let { slug } = useParams();
   let query = useQuery();
 
-  console.log("page", currentPage - 1);
-
   useEffect(() => {
     setDetailData(
-      data.find((item, index) => convertSlug(item.hashtag) == slug)
+      data.find((item, index) => convertSlug(item.hashtag) === slug) ===
+        undefined
+        ? data[0]
+        : data.find((item, index) => convertSlug(item.hashtag) === slug)
     );
     query.get("page") && setCurrentPage(query.get("page"));
   }, [query.get("page"), slug]);

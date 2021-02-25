@@ -72,6 +72,9 @@ function App(props) {
             <Route path="/:slug">
               <ContentBody data={data} />
             </Route>
+            <Route path="/">
+              <ContentBody data={data} />
+            </Route>
           </Switch>
           <div className="two-button">
             <Link
