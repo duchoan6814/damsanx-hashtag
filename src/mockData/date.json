@@ -104,7 +104,7 @@
     "listLyThuyet": [
       {
         "noiDung": "Định nghĩa logarit: Cho hai số thực dương a,b với $a\\ne 1$,  $\\alpha = \\log_a{b} \\Leftrightarrow a^{\\alpha}=b$",
-        "viDu": "Cho $3 = \\log_2{b}, tìm b? $\\\\$ Ta có: $3 = \\log_2{b} \\Leftrightarrow 2^{3}=8$",
+        "viDu": "Cho $3 = \\log_2{b}$, tìm b? $\\\\$ Ta có: $3 = \\log_2{b} \\Leftrightarrow 2^{3}=8$",
         "listCauHoi": [
           {
             "cauHoi": "Cho $2 = \\log_6{b}$, tìm b?",
