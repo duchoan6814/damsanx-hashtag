@@ -1,26 +1,92 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Latex from "react-latex";
 import "./question.scss";
 import { Radio, Col, Button } from "antd";
 
-const Question = () => {
+const Question = ({ cauHoi, dapAn, dapAnDung, giaiThich }) => {
+  const [ketQua, setKetQua] = useState("");
+  const [dapAnChon, setDapAnChon] = useState({});
+  const [classKetQua, setClassKetQua] = useState("");
+  const [displayClass, setDisplayClass] = useState("none");
+
+  useEffect(() => {
+    setClassKetQua("");
+    setKetQua("");
+    setDisplayClass("none")
+  }, [cauHoi]);
+
+  const radioButtonChange = (e) => {
+    setClassKetQua("");
+    setKetQua("");
+    if (e.target.value === 0) {
+      return setDapAnChon({
+        index: 0,
+        value: "A",
+      });
+    }
+    if (e.target.value === 1) {
+      return setDapAnChon({
+        index: 1,
+        value: "B",
+      });
+    }
+    if (e.target.value === 2) {
+      return setDapAnChon({
+        index: 2,
+        value: "C",
+      });
+    }
+    if (e.target.value === 3) {
+      return setDapAnChon({
+        index: 3,
+        value: "D",
+      });
+    }
+  };
+
+  const actionButtonKiemTra = () => {
+    if (dapAnChon.value === undefined) {
+      setKetQua("Vui lòng chọn đáp án.");
+    } else if (dapAnChon.value === dapAnDung) {
+      setClassKetQua("dung");
+      setKetQua("Chính xác");
+      setDisplayClass("");
+    } else {
+      setClassKetQua("sai");
+      setKetQua("Sai rồi");
+    }
+  };
+
+  const actionButtonCachGiai = () => {
+    setDisplayClass("")
+  };
+
   return (
     <div className="container-question">
-      <Latex>
-        Cắt khối cầu $(S)$ bởi mặt phẳng đi qua tâm của nó ta được hình tròn có
-        diện tích bằng $4\pi a^2$. Thể tích của khối cầu $(S)$ bằng
-      </Latex>
-      <Radio.Group name="radiogroup">
-        <Radio value={1}>A. <Latex>{'$P_{\min}=\dfrac{18\sqrt{11}-29}{9}$'}</Latex></Radio>
-        <Radio value={2}>B. <Latex>{'$P_{\min}=\dfrac{9\sqrt{11}-19}{9}$'}</Latex></Radio>
-        <Radio value={3}><Latex>{`C. $P_{\min}=\dfrac{9\sqrt{11}+19}{9}$`}</Latex></Radio>
-        <Radio value={4}><Latex>{`D. $P_{\min}=\dfrac{2\sqrt{11}-3}{3}$`}</Latex></Radio>
+      <Latex>{cauHoi}</Latex>
+      <Radio.Group onChange={radioButtonChange} name="radiogroup">
+        {dapAn.map((item, index) => {
+          return dapAnChon.index === index ? (
+            <Radio className={`${classKetQua}`} value={index}>
+              <Latex>{item}</Latex>
+            </Radio>
+          ) : (
+            <Radio value={index}>
+              <Latex>{item}</Latex>
+            </Radio>
+          );
+        })}
       </Radio.Group>
       <div className="button-dap-an">
-        <Button>Cách Giải</Button>
-        <Button type="primary">Kiểm Tra</Button>
+        <Button onClick={actionButtonCachGiai}>Cách Giải</Button>
+        <Button onClick={actionButtonKiemTra} type="primary">
+          Kiểm Tra
+        </Button>
+        <p>{ketQua}</p>
       </div>
-      <Latex>Giai thich</Latex>
+      <div className={`${displayClass} giai-thich`}>
+        <Latex>{giaiThich}</Latex>
+      </div>
     </div>
   );
 };

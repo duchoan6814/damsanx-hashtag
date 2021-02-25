@@ -22,29 +22,46 @@ const ContentBody = ({ data }) => {
   let { slug } = useParams();
   let query = useQuery();
 
-  console.log("page", query.get("page"));
+  console.log("page", currentPage - 1);
 
   useEffect(() => {
     setDetailData(
       data.find((item, index) => convertSlug(item.hashtag) == slug)
     );
-    query.get("page") ?? setCurrentPage(query.get("page"));
-  }, [slug]);
+    query.get("page") && setCurrentPage(query.get("page"));
+  }, [query.get("page"), slug]);
+
+  useEffect(() => {
+    if (currentPage > get(detailData, "listLyThuyet", []).length) {
+      setCurrentPage(get(detailData, "listLyThuyet", []).length);
+    }
+
+    if (currentPage <= 0) {
+      setCurrentPage(1);
+    }
+  }, [currentPage]);
 
   return (
     <>
       <ContentLyThuyet
         hashtag={detailData?.hashtag}
-        content={get(detailData, "listLyThuyet[0].noiDung")}
-        exam={get(detailData, "listLyThuyet[0].viDu")}
+        content={get(detailData, `listLyThuyet[${currentPage - 1}].noiDung`)}
+        exam={get(detailData, `listLyThuyet[${currentPage - 1}].viDu`)}
       />
       <h3>Bài tập:</h3>
       <Row className="list-question" gutter={[24, 24]}>
-        {get(detailData, "listLyThuyet[0].listCauHoi", []).map(() => (
-          <Col span={12}>
-            <ContentQuestion />
-          </Col>
-        ))}
+        {get(detailData, `listLyThuyet[${currentPage - 1}].listCauHoi`, []).map(
+          (item) => (
+            <Col span={12}>
+              <ContentQuestion
+                cauHoi={get(item, "cauHoi", "")}
+                dapAn={get(item, "dapAn", [])}
+                giaiThich={get(item, "giaiThich", "")}
+                dapAnDung={get(item, "dapAnDung", "")}
+              />
+            </Col>
+          )
+        )}
       </Row>
     </>
   );
