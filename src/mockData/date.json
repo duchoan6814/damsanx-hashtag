@@ -1,5 +1,27 @@
 [
   {
+    "hashtag": "Phương trình mặt cầu",
+    "listLyThuyet": [
+      {
+        "noiDung": "Phương trình mặt cầu dạng chính tắc: $\\\\$ Cho mặt cầu có tâm $I (a;b;c)$, bán kính $R$. Khi đó phương trình chính tắc của mặt cầu là: $(S): (x-a)^2 + (y-b)^2 + (z-c)^2 = R^2$. $\\\\$ Phương trình mặt cầu có dạng triển khai là: $(S): x^2 + y^2 + z^2 - 2ax - 2by - 2cz + d = 0$. $\\\\$ Khi đó mặt cầu có tâm $I(a;b;c)$, bán kính $R = \\sqrt{a^2 + b^2 + c^2 -d} (a^2 + b^2 + c^2 -d > 0)$",
+        "viDu": "Trong không gian với hệ tọa độ $Oxyz$ cho hai điểm $A(2;4;6)$ và $B(-2;8;2)$. Phương trình mặt cầu đường kính $AB$ là? $\\\\$ Trung điểm $I$ của $AB$ có tọa độ $I(0;6;4)$ và độ dài đường kính $AB = 2R = 4\\sqrt{3}$. $\\\\$ Từ đó, phương trình mặt cầu đường kính $AB$ là $x^2 + (y-6)^2 + (z-4)^2 = 12$ ",
+        "listCauHoi": [
+          {
+            "cauHoi": "Trong không gian với hệ tọa độ $Oxyz$ cho hai điểm $A(1;2;3)$ và $B(-1;4;1)$. Phương trình mặt cầu đường kính $AB$ là? ",
+            "dapAn": [
+              "A. $(S): x^2 + (y-3)^2 + (z-2)^2 = 3$",
+              "B. $(S): (x-6)^2 + (y-5)^2 + (z-8)^2 = 9$",
+              "C. $(S): (x-2)^2 + (y-7)^2 + (z-8)^2 = 3$",
+              "D. $(S): x^2 + (y-5)^2 + (z-8)^2 = 9$"
+            ],
+            "dapAnDung": "A",
+            "giaiThich": "Trung điểm $I$ của $AB$ có tọa độ $I(0;3;2)$ và độ dài đường kính $AB = 2R = 2\\sqrt{3}$. $\\\\$ Từ đó, phương trình mặt cầu đường kính $AB$ là $x^2 + (y-3)^2 + (z-2)^2 = 3$"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "hashtag": "Số phức liên hợp",
     "listLyThuyet": [
       {

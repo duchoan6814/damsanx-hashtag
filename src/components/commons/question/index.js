@@ -8,16 +8,16 @@ const Question = ({ cauHoi, dapAn, dapAnDung, giaiThich }) => {
   const [dapAnChon, setDapAnChon] = useState({});
   const [classKetQua, setClassKetQua] = useState("");
   const [displayClass, setDisplayClass] = useState("none");
-
   useEffect(() => {
     setClassKetQua("");
     setKetQua("");
-    setDisplayClass("none")
+    setDisplayClass("none");
   }, [cauHoi]);
 
   const radioButtonChange = (e) => {
     setClassKetQua("");
     setKetQua("");
+    setDisplayClass("none");
     if (e.target.value === 0) {
       return setDapAnChon({
         index: 0,
@@ -58,24 +58,29 @@ const Question = ({ cauHoi, dapAn, dapAnDung, giaiThich }) => {
   };
 
   const actionButtonCachGiai = () => {
-    setDisplayClass("")
+    setDisplayClass("");
+  };
+
+  const renderDapAn = () => {
+    
+    return dapAn.map((item, index) => {
+      return dapAnChon.index === index ? (
+        <Radio className={`${classKetQua}`} value={index}>
+          <Latex>{item}</Latex>
+        </Radio>
+      ) : (
+        <Radio value={index}>
+          <Latex>{item}</Latex>
+        </Radio>
+      );
+    });
   };
 
   return (
     <div className="container-question">
       <Latex>{cauHoi}</Latex>
       <Radio.Group onChange={radioButtonChange} name="radiogroup">
-        {dapAn.map((item, index) => {
-          return dapAnChon.index === index ? (
-            <Radio className={`${classKetQua}`} value={index}>
-              <Latex>{item}</Latex>
-            </Radio>
-          ) : (
-            <Radio value={index}>
-              <Latex>{item}</Latex>
-            </Radio>
-          );
-        })}
+        {renderDapAn()}
       </Radio.Group>
       <div className="button-dap-an">
         <Button onClick={actionButtonCachGiai}>Cách Giải</Button>
