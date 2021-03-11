@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import logo from "./assets/svg/logo.svg";
-import { Layout, Menu, Button, Carousel } from "antd";
+import { Layout, Menu, Button, Carousel, Input } from "antd";
 import "./App.css";
 import "./App.scss";
 import { ArrowLeftOutlined } from "@ant-design/icons";
@@ -15,6 +15,8 @@ import {
 } from "react-router-dom";
 import data from "./mockData/date.json";
 import { convertSlug } from "./common/helper";
+import EditorComponent from './components/EditQuestion';
+import EditorLyThuyet from './components/EditorLyThuyet';
 
 const { Header, Content, Footer } = Layout;
 
@@ -55,7 +57,11 @@ function App(props) {
         </Menu>
       </Header>
       <Content style={{ padding: "20px 50px", backgroundColor: "#FFDE96" }}>
-        <div className="header-of-content">
+        <h2>Hashtag Name</h2>
+        <Input placeholder="hashtag name..." />
+        <EditorLyThuyet />
+        <EditorComponent />
+        {/* <div className="header-of-content">
           <div className="left-site">
             <Button icon={<ArrowLeftOutlined />}>Quay lại</Button>
           </div>
@@ -91,7 +97,7 @@ function App(props) {
               <Button type="primary">Sau</Button>
             </Link>
           </div>
-        </div>
+        </div> */}
       </Content>
       <Footer style={{ textAlign: "center" }}>
         Ant Design ©2018 Created by Ant UED
