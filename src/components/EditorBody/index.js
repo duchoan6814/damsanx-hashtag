@@ -22,12 +22,7 @@ const EditorBody = () => {
             cuaHoi: "",
             listDapAn: [],
             dapAnDung: 0,
-          },
-          {
-            cuaHoi: "",
-            listDapAn: [],
-            dapAnDung: 0,
-          },
+          }
         ],
       },
     ],
