@@ -3,7 +3,7 @@ import logo from "./assets/svg/logo.svg";
 import { Layout, Menu, Button, Carousel, Input } from "antd";
 import "./App.css";
 import "./App.scss";
-import { ArrowLeftOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined, SearchOutlined, PlusOutlined } from "@ant-design/icons";
 import Tag from "./components/commons/tags";
 import ContentBody from "./components/contentBody";
 import {
@@ -15,14 +15,16 @@ import {
 } from "react-router-dom";
 import data from "./mockData/date.json";
 import { convertSlug } from "./common/helper";
-import EditorComponent from './components/EditQuestion';
-import EditorLyThuyet from './components/EditorLyThuyet';
+
+import { get } from "lodash";
+import EditorBody from './components/EditorBody';
 
 const { Header, Content, Footer } = Layout;
 
 function App(props) {
   const [currentPage, setCurrentPage] = useState(1);
   const [path, setPath] = useState("");
+  
 
   useEffect(() => {
     setCurrentPage(1);
@@ -57,10 +59,8 @@ function App(props) {
         </Menu>
       </Header>
       <Content style={{ padding: "20px 50px", backgroundColor: "#FFDE96" }}>
-        <h2>Hashtag Name</h2>
-        <Input placeholder="hashtag name..." />
-        <EditorLyThuyet />
-        <EditorComponent />
+        <EditorBody />
+
         {/* <div className="header-of-content">
           <div className="left-site">
             <Button icon={<ArrowLeftOutlined />}>Quay lại</Button>

@@ -90,11 +90,10 @@ const EditorLyThuyet = () => {
       clearTimeout(timeOut);
       timeOut = 0;
     };
-  }, [dataInput, renderLatex, isRenderLatex]);
+  }, [dataText, dataInput, renderLatex, isRenderLatex]);
 
   const txaOnChange = (e) => {
     setDataText(e.target.value);
-    console.log(e.target.value.split("image"));
     setListText(e.target.value.split("image"));
   };
 
@@ -158,6 +157,18 @@ const EditorLyThuyet = () => {
     }
   };
 
+  const handleEditorWhenDeleteImage = () => {
+
+    // setDataText("");
+    // const temp = dataText.split("\n");
+    // console.log('temp', temp.filter(''));
+    
+    
+  };
+
+  useEffect(() => {
+  }, [dataInput])
+
   const pushImageIntoArr = (str) => {
     setDataInput([...dataInput, str]);
     setDataText(`${dataText}\nimage\n`);
@@ -169,14 +180,10 @@ const EditorLyThuyet = () => {
 
     console.log(_index);
 
-    setDataInput(dataInput.filter((item, indexx) => indexx !== _index ))
+    setDataInput(dataInput.filter((item, indexx) => indexx !== _index));
 
-    
-  //   if (_index === 0) {
-  //     setDataInput(data.shift());
-  //   } else {
-  //     setDataInput(dataInput.splice(_index, 1));
-  //   }
+    handleEditorWhenDeleteImage();
+
   };
 
   const renderListImage = useMemo(() => {
