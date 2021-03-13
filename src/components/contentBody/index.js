@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Row, Col } from "antd";
 import ContentLyThuyet from "../contentLyThuyet";
 import ContentQuestion from "../commons/question";
@@ -11,14 +11,18 @@ import {
   useLocation,
 } from "react-router-dom";
 import { convertSlug } from "../../common/helper";
+import { StoreContext } from "../../Context";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const ContentBody = ({ data }) => {
+const ContentBody = () => {
   const [detailData, setDetailData] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
+  const {
+    data: [data],
+  } = useContext(StoreContext);
   let { slug } = useParams();
   let query = useQuery();
 

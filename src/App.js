@@ -43,6 +43,9 @@ function App(props) {
           <Route path="/" exact>
             <DisplayBody />
           </Route>
+          <Route path="/:slug">
+            <DisplayBody {...props} />
+          </Route>
           <Route path="/editor">
             <EditorBody />
           </Route>
