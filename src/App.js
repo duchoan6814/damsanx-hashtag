@@ -16,6 +16,7 @@ import {
   Route,
   Link,
   withRouter,
+  Redirect
 } from "react-router-dom";
 import data from "./mockData/date.json";
 import { convertSlug } from "./common/helper";
@@ -32,7 +33,7 @@ function App(props) {
     <Layout className="layout">
       <Header>
         <img src={logo} className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
           <Menu.Item key="1"><Link to="/hashtag">Nhà Chính</Link></Menu.Item>
           <Menu.Item key="2"><Link to="/editor">Editor</Link></Menu.Item>
           {/* <Menu.Item key="3">Đóng Góp</Menu.Item>  */}
@@ -40,6 +41,7 @@ function App(props) {
       </Header>
       <Content style={{ padding: "20px 50px", backgroundColor: "#FFDE96" }}>
         <Switch>
+          <Redirect from="/" to="/hashtag" exact/>
           <Route path="/hashtag" exact>
             <DisplayBody {...props} />
           </Route>
