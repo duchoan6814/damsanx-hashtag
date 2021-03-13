@@ -33,7 +33,7 @@ const DisplayBody = (props) => {
     data.map((item, index) => (
       <Link
         onClick={() => setPath(convertSlug(item.hashtag))}
-        to={`${convertSlug(item.hashtag)}?page=1`}
+        to={`/hashtag/${convertSlug(item.hashtag)}?page=1`}
       >
         <Tag content={`#${item.hashtag}`} select={index === 0} />
       </Link>
@@ -63,10 +63,10 @@ const DisplayBody = (props) => {
       <div className="list-tag">{renderHashtag()}</div>
       <div className="site-layout-content">
         <Switch>
-          <Route path="/:slug">
+          <Route path="/hashtag/:slug">
             <ContentBody />
           </Route>
-          <Route path="/">
+          <Route path="/hashtag">
             <ContentBody data={data} />
           </Route>
         </Switch>

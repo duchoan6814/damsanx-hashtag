@@ -33,17 +33,17 @@ function App(props) {
       <Header>
         <img src={logo} className="logo" />
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["2"]}>
-          <Menu.Item key="1"><Link to="/">Nhà Chính</Link></Menu.Item>
+          <Menu.Item key="1"><Link to="/hashtag">Nhà Chính</Link></Menu.Item>
           <Menu.Item key="2"><Link to="/editor">Editor</Link></Menu.Item>
           {/* <Menu.Item key="3">Đóng Góp</Menu.Item>  */}
         </Menu>
       </Header>
       <Content style={{ padding: "20px 50px", backgroundColor: "#FFDE96" }}>
         <Switch>
-          <Route path="/" exact>
-            <DisplayBody />
+          <Route path="/hashtag" exact>
+            <DisplayBody {...props} />
           </Route>
-          <Route path="/:slug">
+          <Route path="/hashtag/:slug" exact>
             <DisplayBody {...props} />
           </Route>
           <Route path="/editor">
