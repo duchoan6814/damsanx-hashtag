@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "antd/dist/antd.css";
+import StoreContext from "./Context";
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,9 +14,11 @@ import {
 } from "react-router-dom";
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <StoreContext>
+      <Router>
+        <App />
+      </Router>
+    </StoreContext>
   </React.StrictMode>,
   document.getElementById("root")
 );

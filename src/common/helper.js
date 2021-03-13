@@ -1,4 +1,6 @@
 export var convertSlug = function (str) {
+  if (!str) return '';
+  
   // Chuyển hết sang chữ thường
   str = str.toLowerCase();
 
