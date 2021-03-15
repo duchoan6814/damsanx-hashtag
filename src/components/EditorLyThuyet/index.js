@@ -1,5 +1,11 @@
 import { Col, Row, Input, Button, Modal, Upload } from "antd";
-import React, { useCallback, useEffect, useState, useMemo } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useState,
+  useMemo,
+  useContext,
+} from "react";
 import {
   LoadingOutlined,
   PlusOutlined,
@@ -8,6 +14,7 @@ import {
 import { get } from "lodash";
 
 import "./EditorLyThuyet.scss";
+import { StoreContext } from "../../Context";
 
 const { TextArea } = Input;
 
@@ -32,7 +39,7 @@ const getBase64 = (file) => {
     reader.onerror = (error) => reject(error);
   });
 };
-const EditorLyThuyet = () => {
+const EditorLyThuyet = (props) => {
   const [dataInput, setDataInput] = useState([]);
   const [listText, setListText] = useState([]);
   const [dataText, setDataText] = useState("");
@@ -49,6 +56,10 @@ const EditorLyThuyet = () => {
     type: TYPE.QUESTION,
     answerKey: "",
   });
+
+  const {
+    dataEditor: [dataEditor, setDataEditor],
+  } = useContext(StoreContext);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -95,6 +106,17 @@ const EditorLyThuyet = () => {
   const txaOnChange = (e) => {
     setDataText(e.target.value);
     setListText(e.target.value.split("image"));
+    setDataEditor({
+      ...dataEditor,
+      listLyThuyet: [
+        ...dataEditor.listLyThuyet.slice(0, props.index),
+        {
+          ...dataEditor.listLyThuyet[props.index],
+          noiDung: e.target.value
+        },
+        ...dataEditor.listLyThuyet.slice(props.index + 1)
+      ]
+    });
   };
 
   const renderPreview = useMemo(() => {
@@ -158,16 +180,12 @@ const EditorLyThuyet = () => {
   };
 
   const handleEditorWhenDeleteImage = () => {
-
     // setDataText("");
     // const temp = dataText.split("\n");
     // console.log('temp', temp.filter(''));
-    
-    
   };
 
-  useEffect(() => {
-  }, [dataInput])
+  useEffect(() => {}, [dataInput]);
 
   const pushImageIntoArr = (str) => {
     setDataInput([...dataInput, str]);
@@ -183,7 +201,6 @@ const EditorLyThuyet = () => {
     setDataInput(dataInput.filter((item, indexx) => indexx !== _index));
 
     handleEditorWhenDeleteImage();
-
   };
 
   const renderListImage = useMemo(() => {

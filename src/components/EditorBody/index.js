@@ -1,48 +1,53 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Layout, Menu, Button, Carousel, Input } from "antd";
 import {
   ArrowLeftOutlined,
   SearchOutlined,
   PlusOutlined,
+  EyeOutlined,
 } from "@ant-design/icons";
 import { get } from "lodash";
+
+import { convertSlug } from "../../common/helper";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  withRouter,
+  Redirect
+} from "react-router-dom";
 
 import EditorComponent from "../EditQuestion";
 import EditorLyThuyet from "../EditorLyThuyet";
 import "./EditorBody.scss";
+import { StoreContext } from "../../Context";
 
 const EditorBody = () => {
-  const [dataEditor, setDataEditor] = useState({
-    hashtagName: "",
-    listDiemLyThuyet: [
-      {
-        lyThuyet: "",
-        listCauHoi: [
-          {
-            cuaHoi: "",
-            listDapAn: [],
-            dapAnDung: 0,
-          }
-        ],
-      },
-    ],
-  });
+  const {
+    dataEditor: [dataEditor, setDataEditor],
+    data: [ data, setData ]
+  } = useContext(StoreContext);
 
-  const handleButtonThemDiemLyThuyet = () => {
+  const handleButtonThemDiemLyThuyet = (index) => {
     setDataEditor({
       ...dataEditor,
-      listDiemLyThuyet: [
-        ...dataEditor.listDiemLyThuyet,
+      listLyThuyet: [
+        ...dataEditor.listLyThuyet,
         {
-          lyThuyet: "",
+          noiDung: "",
+          viDu: "",
           listCauHoi: [
             {
-              cuaHoi: "",
-              listDapAn: [],
-              dapAnDung: 0,
-            }
+              cauHoi: "",
+              dapAn: [],
+              dapAnDung: "A",
+              giaiThich: "",
+            },
           ],
         },
+        // ...dataEditor.listLyThuyet.slice(index + 1),
       ],
     });
   };
@@ -51,45 +56,65 @@ const EditorBody = () => {
     const _index = index;
     setDataEditor({
       ...dataEditor,
-      listDiemLyThuyet: [
-        ...dataEditor?.listDiemLyThuyet?.slice(0, index),
+      listLyThuyet: [
+        ...dataEditor?.listLyThuyet?.slice(0, index),
         {
-          ...dataEditor?.listDiemLyThuyet[index],
+          ...dataEditor?.listLyThuyet[index],
           listCauHoi: [
-            ...dataEditor?.listDiemLyThuyet[index].listCauHoi,
-            { cuaHoi: "", listDapAn: [], dapAnDung: 0 },
+            ...dataEditor?.listLyThuyet[index].listCauHoi,
+            {
+              cauHoi: "",
+              dapAn: [],
+              dapAnDung: "A",
+              giaiThich: "",
+            },
           ],
         },
-        ...dataEditor?.listDiemLyThuyet?.slice(index + 1),
+        ...dataEditor?.listLyThuyet?.slice(index + 1),
       ],
     });
   };
 
-  console.log(dataEditor);
+  const onChangeHashTagName = (e) => {
+    setDataEditor({
+      ...dataEditor,
+      hashtag: e.target.value,
+    });
+  };
+
+  const handleButtonPreview = () => {
+    setData([
+      ...data,
+      dataEditor
+    ])
+  }
 
   return (
     <>
       <div className="wrap_header_of_body">
         <div className="top_side">
           <h2>Hashtag Name</h2>
-          <Button
-            onClick={() => handleButtonThemDiemLyThuyet()}
-            icon={<PlusOutlined />}
-          >
-            Thêm điểm lý thuyết
+          <Button onClick={() =>handleButtonPreview()} icon={<EyeOutlined />} >
+            <Link to={`/hashtag/${convertSlug(dataEditor.hashtag)}?page=1`}>Preview</Link>
           </Button>
         </div>
-        <Input placeholder="hashtag name..." />
+        <Input onChange={onChangeHashTagName} placeholder="hashtag name..." />
       </div>
 
-      {get(dataEditor, "listDiemLyThuyet", []).map((item, index) => {
+      {get(dataEditor, "listLyThuyet", []).map((item, index) => {
         return (
           <div className="wrap_list_diem_ly_thuyet">
-            <EditorLyThuyet />
+            <EditorLyThuyet key={index} index={index} />
             <div className="wrap_list_cau_tra_loi">
-              {get(dataEditor, `listDiemLyThuyet[${index}].listCauHoi`, []).map(
-                (item, index) => {
-                  return <EditorComponent key={index} />;
+              {get(dataEditor, `listLyThuyet[${index}].listCauHoi`, []).map(
+                (item, index2) => {
+                  return (
+                    <EditorComponent
+                      key={index2}
+                      indexDiemLyThuyet={index}
+                      index={index2}
+                    />
+                  );
                 }
               )}
               <Button
@@ -100,27 +125,16 @@ const EditorBody = () => {
                 Thêm Câu Hỏi
               </Button>
             </div>
+            <Button
+              onClick={() => handleButtonThemDiemLyThuyet(index)}
+              icon={<PlusOutlined />}
+              className="button_them_diem_ly_thuyet"
+            >
+              Thêm điểm lý thuyết
+            </Button>
           </div>
         );
       })}
-
-      {/* <div className="wrap_list_diem_ly_thuyet">
-        <EditorLyThuyet />
-        <div className="wrap_list_cau_tra_loi">
-          {get(dataEditor, "listDiemLyThuyet[0].listCauHoi", []).map(
-            (item, index) => {
-              return <EditorComponent key={index} />;
-            }
-          )}
-          <Button
-            className="button_them_cau_hoi"
-            onClick={() => handleButtonThemCauHoi(0)}
-            icon={<PlusOutlined />}
-          >
-            Thêm Câu Hỏi
-          </Button>
-        </div>
-      </div> */}
     </>
   );
 };

@@ -2,10 +2,21 @@
   padding: 10px;
   background-color: white;
   border-radius: 10px;
+  
   .top_side {
     display: flex;
     justify-content: space-between;
+
+    button {
+      span {
+        margin-right: 10px;
+      }
+    }
   }
+}
+
+.button_them_diem_ly_thuyet  {
+  margin-top: 10px;
 }
 
 .wrap_list_diem_ly_thuyet {
@@ -16,8 +27,5 @@
 
   .wrap_list_cau_tra_loi {
     overflow: auto;
-    button.button_them_cau_hoi {
-      float: right;
-    }
   }
 }

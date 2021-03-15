@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  useContext,
+} from "react";
 import {
   Input,
   Upload,
@@ -13,6 +19,7 @@ import { EyeOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./create_question.scss";
 import { get, set } from "lodash";
 import useSelectedTag from "./useSelectedTag";
+import { StoreContext } from "../../Context";
 
 const TYPE = {
   QUESTION: "QUESTION",
@@ -110,6 +117,10 @@ const Editor = (props) => {
   const [MESS_ERR, SET_MESS_ERR] = useState({
     UPLOAD_IMG: "",
   });
+  const {
+    dataEditor: [dataEditor, setDataEditor],
+  } = useContext(StoreContext);
+
   // const {
   //   getFieldDecorator,
   //   validateFields,
@@ -144,7 +155,74 @@ const Editor = (props) => {
       clearTimeout(timeOut);
       timeOut = 0;
     };
-  }, [dataInput, renderLatex, isRenderLatex]);
+  }, [dataInput, renderLatex, isRenderLatex, dataEditor]);
+
+  const hanleQuestionContext = (value) => {
+    let _value = value;
+    setDataEditor({
+      ...dataEditor,
+      listLyThuyet: [
+        ...dataEditor.listLyThuyet.slice(0, props.indexDiemLyThuyet),
+        {
+          ...dataEditor.listLyThuyet[props.indexDiemLyThuyet],
+          listCauHoi: [
+            ...dataEditor.listLyThuyet[
+              props.indexDiemLyThuyet
+            ].listCauHoi.slice(0, props.index),
+            {
+              ...dataEditor.listLyThuyet[props.indexDiemLyThuyet].listCauHoi[
+                props.index
+              ],
+              cauHoi: _value,
+            },
+            ...dataEditor.listLyThuyet[
+              props.indexDiemLyThuyet
+            ].listCauHoi.slice(props.index + 1),
+          ],
+        },
+        ...dataEditor.listLyThuyet.slice(props.indexDiemLyThuyet + 1),
+      ],
+    });
+  };
+
+  const handleAnswerContext = (answerKey, index, value) => {
+    let _answerKey = answerKey;
+    let _value = value;
+    let _index = index;
+
+    setDataEditor({
+      ...dataEditor,
+      listLyThuyet: [
+        ...dataEditor.listLyThuyet.slice(0, props.indexDiemLyThuyet),
+        {
+          ...dataEditor.listLyThuyet[props.indexDiemLyThuyet],
+          listCauHoi: [
+            ...dataEditor.listLyThuyet[
+              props.indexDiemLyThuyet
+            ].listCauHoi.slice(0, props.index),
+            {
+              ...dataEditor.listLyThuyet[props.indexDiemLyThuyet].listCauHoi[
+                props.index
+              ],
+              dapAn: [
+                ...dataEditor.listLyThuyet[props.indexDiemLyThuyet].listCauHoi[
+                  props.index
+                ].dapAn.slice(0, _answerKey),
+                `${_index}. ${_value}`,
+                ...dataEditor.listLyThuyet[props.indexDiemLyThuyet].listCauHoi[
+                  props.index
+                ].dapAn.slice(_answerKey + 1),
+              ],
+            },
+            ...dataEditor.listLyThuyet[
+              props.indexDiemLyThuyet
+            ].listCauHoi.slice(props.index + 1),
+          ],
+        },
+        ...dataEditor.listLyThuyet.slice(props.indexDiemLyThuyet + 1),
+      ],
+    });
+  };
 
   const handleInputValue = (_obj) => {
     const _dataInput = { ...dataInput } || {};
@@ -153,19 +231,52 @@ const Editor = (props) => {
 
     if (_type === TYPE.QUESTION) {
       _dataInput.question.content = _value;
+      hanleQuestionContext(_value);
     } else {
       const answerKey = get(_obj, "answerKey", TYPE.ANSWER_KEY.A);
       const arrAnswer = get(_dataInput, "answers", []);
       const posKeyAnswer = arrAnswer.findIndex(
         (item) => get(item, `answerKey`, TYPE.ANSWER_KEY.A) === answerKey
       );
+      console.log("propskey", posKeyAnswer);
 
       const checkPos = posKeyAnswer >= 0 && posKeyAnswer < arrAnswer.length;
       _dataInput.answers[checkPos ? posKeyAnswer : 0].content = _value;
+      handleAnswerContext(posKeyAnswer, answerKey, _value);
     }
-    console.log('data', _dataInput);
-    
+
     return setDataInput({ ..._dataInput });
+  };
+
+  console.log("dataEditor", dataEditor);
+
+  const handleChoiceAnswer = (dapAnChon) => {
+    let _dapAnChon = dapAnChon;
+
+    setDataEditor({
+      ...dataEditor,
+      listLyThuyet: [
+        ...dataEditor.listLyThuyet.slice(0, props.indexDiemLyThuyet),
+        {
+          ...dataEditor.listLyThuyet[props.indexDiemLyThuyet],
+          listCauHoi: [
+            ...dataEditor.listLyThuyet[
+              props.indexDiemLyThuyet
+            ].listCauHoi.slice(0, props.index),
+            {
+              ...dataEditor.listLyThuyet[props.indexDiemLyThuyet].listCauHoi[
+                props.index
+              ],
+              dapAnDung: _dapAnChon,
+            },
+            ...dataEditor.listLyThuyet[
+              props.indexDiemLyThuyet
+            ].listCauHoi.slice(props.index + 1),
+          ],
+        },
+        ...dataEditor.listLyThuyet.slice(props.indexDiemLyThuyet + 1),
+      ],
+    });
   };
 
   const onChangeChoice = (_obj) => {
@@ -189,6 +300,8 @@ const Editor = (props) => {
       false
     );
     _dataInput.answers[numberAnswer].isRightAnswer = !getIsRightAnswer;
+
+    handleChoiceAnswer(_answerKey);
 
     return setDataInput({ ..._dataInput });
   };
@@ -272,7 +385,6 @@ const Editor = (props) => {
 
       setModalUploadImage(false);
       SET_MESS_ERR({});
-      console.log(_dataInput);
       return setDataInput({ ..._dataInput });
     }
   };
@@ -428,9 +540,19 @@ const Editor = (props) => {
             ))}
           </div>
         </div>
+        <div className="wrap_giai_thich">
+          <p>
+            Giải Thích:{" "}
+            {get(
+              dataEditor,
+              `listLyThuyet[${props.indexDiemLyThuyet}].listCauHoi[${props.index}].giaiThich`,
+              ""
+            )}
+          </p>
+        </div>
       </>
     ),
-    [dataInput]
+    [dataInput, dataEditor]
   );
   const RenderSelectPositionToUpLoad = useMemo(
     () => (
@@ -578,6 +700,34 @@ const Editor = (props) => {
     ),
     [dataInput]
   );
+
+  const handleGiaiThichChange = (e) => {
+    setDataEditor({
+      ...dataEditor,
+      listLyThuyet: [
+        ...dataEditor.listLyThuyet.slice(0, props.indexDiemLyThuyet),
+        {
+          ...dataEditor.listLyThuyet[props.indexDiemLyThuyet],
+          listCauHoi: [
+            ...dataEditor.listLyThuyet[
+              props.indexDiemLyThuyet
+            ].listCauHoi.slice(0, props.index),
+            {
+              ...dataEditor.listLyThuyet[props.indexDiemLyThuyet].listCauHoi[
+                props.index
+              ],
+              giaiThich: e.target.value,
+            },
+            ...dataEditor.listLyThuyet[
+              props.indexDiemLyThuyet
+            ].listCauHoi.slice(props.index + 1),
+          ],
+        },
+        ...dataEditor.listLyThuyet.slice(props.indexDiemLyThuyet + 1),
+      ],
+    });
+  };
+
   return (
     <div className="wrap_layout_create_question">
       <div className="wrap_layout_create_question__container">
@@ -601,6 +751,17 @@ const Editor = (props) => {
                 })}
             </div>
             <div className="answer">{renderInputAnswer}</div>
+            <div className="giaiThich">
+              <h5>Giải Thích</h5>
+              <Input.TextArea
+                value={get(
+                  dataEditor,
+                  `listLyThuyet[${props.indexDiemLyThuyet}].listCauHoi[${props.index}].giaiThich`,
+                  ""
+                )}
+                onChange={handleGiaiThichChange}
+              />
+            </div>
           </div>
           <div className="wrap_preview_question">
             <div className="wrap_preview">{renderPreview}</div>
