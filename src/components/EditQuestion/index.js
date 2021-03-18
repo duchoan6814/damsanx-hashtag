@@ -20,6 +20,7 @@ import "./create_question.scss";
 import { get, set } from "lodash";
 import useSelectedTag from "./useSelectedTag";
 import { StoreContext } from "../../Context";
+import Question from "../commons/question";
 
 const TYPE = {
   QUESTION: "QUESTION",
@@ -764,7 +765,30 @@ const Editor = (props) => {
             </div>
           </div>
           <div className="wrap_preview_question">
-            <div className="wrap_preview">{renderPreview}</div>
+            <div className="wrap_preview">
+              <Question
+                cauHoi={get(
+                  dataEditor,
+                  `listLyThuyet[${props.indexDiemLyThuyet}].listCauHoi[${props.index}].cauHoi`,
+                  ""
+                )}
+                dapAn={get(
+                  dataEditor,
+                  `listLyThuyet[${props.indexDiemLyThuyet}].listCauHoi[${props.index}].dapAn`,
+                  []
+                )}
+                dapAnDung={get(
+                  dataEditor,
+                  `listLyThuyet[${props.indexDiemLyThuyet}].listCauHoi[${props.index}].dapAnDung`,
+                  "A"
+                )}
+                giaiThich={get(
+                  dataEditor,
+                  `listLyThuyet[${props.indexDiemLyThuyet}].listCauHoi[${props.index}].giaiThich`,
+                  ""
+                )}
+              />
+            </div>
             <div className="wrap_list_info_create">
               <div className="wrap_upload_img">
                 <Button onClick={() => setModalUploadImage(true)}>

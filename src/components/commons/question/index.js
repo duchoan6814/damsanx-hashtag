@@ -3,7 +3,8 @@ import Latex from "react-latex";
 import "./question.scss";
 import { Radio, Col, Button } from "antd";
 
-const Question = ({ cauHoi, dapAn, dapAnDung, giaiThich }) => {
+const Question = (props) => {
+  const { cauHoi, dapAn, dapAnDung, giaiThich } = props;
   const [ketQua, setKetQua] = useState("");
   const [dapAnChon, setDapAnChon] = useState({});
   const [classKetQua, setClassKetQua] = useState("");
@@ -13,6 +14,9 @@ const Question = ({ cauHoi, dapAn, dapAnDung, giaiThich }) => {
     setKetQua("");
     setDisplayClass("none");
   }, [cauHoi]);
+
+  console.log('props', props);
+  
 
   const radioButtonChange = (e) => {
     setClassKetQua("");

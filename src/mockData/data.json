@@ -1,0 +1,167 @@
+[
+  {
+    "hashtag": "Phương trình mặt cầu",
+    "listLyThuyet": [
+      {
+        "noiDung": {
+          "text": ["Phương trình mặt cầu dạng chính tắc: $\\\\$ Cho mặt cầu có tâm $I (a;b;c)$, bán kính $R$. Khi đó phương trình chính tắc của mặt cầu là: $(S): (x-a)^2 + (y-b)^2 + (z-c)^2 = R^2$. $\\\\$ Phương trình mặt cầu có dạng triển khai là: $(S): x^2 + y^2 + z^2 - 2ax - 2by - 2cz + d = 0$. $\\\\$ Khi đó mặt cầu có tâm $I(a;b;c)$, bán kính $R = \\sqrt{a^2 + b^2 + c^2 -d} (a^2 + b^2 + c^2 -d > 0)$"],
+          "image":[]
+        },
+        "viDu": "Trong không gian với hệ tọa độ $Oxyz$ cho hai điểm $A(2;4;6)$ và $B(-2;8;2)$. Phương trình mặt cầu đường kính $AB$ là? $\\\\$ Trung điểm $I$ của $AB$ có tọa độ $I(0;6;4)$ và độ dài đường kính $AB = 2R = 4\\sqrt{3}$. $\\\\$ Từ đó, phương trình mặt cầu đường kính $AB$ là $x^2 + (y-6)^2 + (z-4)^2 = 12$ ",
+        "listCauHoi": [
+          {
+            "cauHoi": "Trong không gian với hệ tọa độ $Oxyz$ cho hai điểm $A(1;2;3)$ và $B(-1;4;1)$. Phương trình mặt cầu đường kính $AB$ là? ",
+            "dapAn": [
+              "A. $(S): x^2 + (y-3)^2 + (z-2)^2 = 3$",
+              "B. $(S): (x-6)^2 + (y-5)^2 + (z-8)^2 = 9$",
+              "C. $(S): (x-2)^2 + (y-7)^2 + (z-8)^2 = 3$",
+              "D. $(S): x^2 + (y-5)^2 + (z-8)^2 = 9$"
+            ],
+            "dapAnDung": "A",
+            "giaiThich": "Trung điểm $I$ của $AB$ có tọa độ $I(0;3;2)$ và độ dài đường kính $AB = 2R = 2\\sqrt{3}$. $\\\\$ Từ đó, phương trình mặt cầu đường kính $AB$ là $x^2 + (y-3)^2 + (z-2)^2 = 3$"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "hashtag": "Số phức liên hợp",
+    "listLyThuyet": [
+      {
+        "noiDung": {
+          "text": ["Số phức liên hợp của số phức $z= a + bi$ là $\\overline{z}=a -bi$."],
+          "image":[]
+        },
+        "viDu": "Số phức liên hợp của số phức $z= 2 + 3i$ là $\\overline{z}= 2 -3i$",
+        "listCauHoi": [
+          {
+            "cauHoi": "Tìm số phức liên hợp của $z= 10 + 3i$",
+            "dapAn": [
+              "A. $\\overline{z}= 10 -3i$",
+              "B. $\\overline{z}= 10 +3i$",
+              "C. $\\overline{z}= 3 -10i$",
+              "D. $\\overline{z}= 3 +10i$"
+            ],
+            "dapAnDung": "A",
+            "giaiThich": "Số phức liên hợp của số phức $z= 10 + 3i$ là $\\overline{z}= 10 -3i$"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "hashtag": "hình trụ",
+    "listLyThuyet": [
+      {
+        "noiDung": {
+          "text": ["Diện tích xung quanh của hình trụ: $S_{xq}$= 2$\\pi$.r.h"],
+          "image":[]
+        },
+        "viDu": "Cho hình trụ có chiều cao là 5cm, bán kính đáy là 3cm. Tính diện tích xung quanh hình trụ? $\\\\$ Ta có: $S_{xq}= 2\\pi.r.h = 2\\pi.3.5 = 30\\pi$ ($cm^2$)",
+        "listCauHoi": [
+          {
+            "cauHoi": "Cho hình trụ có chiều cao là 8cm, bán kính đáy là 5cm. Tính diện tích xung quanh hình trụ?",
+            "dapAn": [
+              "A. $60\\pi$ ($cm^2$)",
+              "B. $70\\pi$ ($cm^2$)",
+              "C. $80\\pi$ ($cm^2$)",
+              "D. $90\\pi$ ($cm^2$)"
+            ],
+            "dapAnDung": "C",
+            "giaiThich": "Ta có: $S_{xq}= 2\\pi.r.h = 2\\pi.8.5 = 80\\pi$ ($cm^2$)"  
+          }
+        ]
+      },
+      {
+        "noiDung": {
+          "text": ["Thể tích của hình trụ: V = B.h = $\\pi$. $r^2$.h"],
+          "image":[]
+        },
+        "viDu": "Cho hình trụ có chiều cao là 5cm, bán kính đáy là 3cm. Tính thể tích hình trụ? $\\\\$ Ta có: V = $\\pi$.$r^2$.h = $\\pi$.$3^2$.5 = 45$\\pi$ ($cm^3$)",
+        "listCauHoi": [
+          {
+            "cauHoi": "Cho hình trụ có chiều cao là 6cm, bán kính đáy là 5cm. Tính diện tích xung quanh hình trụ?",
+            "dapAn": [
+              "A. $120\\pi$ ($cm^3$)",
+              "B. $130\\pi$ ($cm^3$)",
+              "C. $140\\pi$ ($cm^2$)",
+              "D. $150\\pi$ ($cm^2$)"
+            ],
+            "dapAnDung": "D",
+            "giaiThich": "Ta có: V = $\\pi$.$r^2$.h = $\\pi$.$5^2$.6 = 150$\\pi$ ($cm^3$)"  
+          }
+        ]         
+      }
+    ]
+  },
+  {
+    "hashtag": "thể tích khối lăng trụ",
+    "listLyThuyet": [
+      {
+        "noiDung": {
+          "text": ["Cho khối lập phương cạnh bằng a, thể tích của khối lập phương là: $V=a^3$."],
+          "image":[]
+        },
+        "viDu": "Khối lập phương cạnh a bằng 5(cm), thể tích của khối lập phương là: $V=5^3$ = 125($cm^3$)",
+        "listCauHoi": [
+          {
+            "cauHoi": "Tính thể tích khối lăng trụ có cạnh a bằng 8(cm)?",
+            "dapAn": [
+              "A. $312$ ($cm^3$)",
+              "B. $412$ ($cm^3$)",
+              "C. $512$ ($cm^3$)",
+              "D. $612$ ($cm^3$))"
+            ],
+            "dapAnDung": "C",
+            "giaiThich": "Ta có: $V=a^3$=$8^3$= $512$ ($cm^3$))"  
+          }
+        ]
+      },
+      {
+        "noiDung": {
+          "text": ["Thể tích lăng trụ đứng: V = B.h với B: diện tích đáy, h: chiều cao"],
+          "image":[]
+        },
+        "viDu": "Khối lập phương có diện tích đáy bằng 10($cm^2$) và chiều cao là 4cm. Thể tích khối lăng trụ đứng là: $V=B.h=10$.$4= 40($$cm^3$)",
+        "listCauHoi": [
+          {
+            "cauHoi": "Cho hình lăng trụ có diện tích đáy là 25($cm^2$) và chiều cao là 2cm. Tính thể tích khối lăng trụ?",
+            "dapAn": [
+              "A. $50$($cm^3$)",
+              "B. $60$($cm^3$)",
+              "C. $70$($cm^3$)",
+              "D. $80$($cm^3$))"
+            ],
+            "dapAnDung": "A",
+            "giaiThich": "Ta có: $V=B.h=25$.$2= 50($$cm^3$)"  
+          }
+        ]         
+      }
+    ]
+  },
+  {
+    "hashtag": "định nghĩa logarit",
+    "listLyThuyet": [
+      {
+        "noiDung": {
+          "text": ["Định nghĩa logarit: Cho hai số thực dương a,b với $a\\ne 1$,  $\\alpha = \\log_a{b} \\Leftrightarrow a^{\\alpha}=b$"],
+          "image":[]
+        },
+        "viDu": "Cho $3 = \\log_2{b}$, tìm b? $\\\\$ Ta có: $3 = \\log_2{b} \\Leftrightarrow 2^{3}=8$",
+        "listCauHoi": [
+          {
+            "cauHoi": "Cho $2 = \\log_6{b}$, tìm b?",
+            "dapAn": [
+              "A. 12",
+              "B. 24",
+              "C. 36",
+              "D. 48"
+            ],
+            "dapAnDung": "C",
+            "giaiThich": "Ta có: $2 = \\log_6{b} \\Leftrightarrow 6^{2}=36$"  
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -70,21 +70,6 @@ const DisplayBody = (props) => {
             <ContentBody data={data} />
           </Route>
         </Switch>
-        <div className="two-button">
-          <Link
-            onClick={actionButtonTruoc}
-            to={`${props?.location?.pathname}?page=${currentPage - 1}`}
-          >
-            <Button type="primary">Trước</Button>
-          </Link>
-
-          <Link
-            onClick={actionButtonSau}
-            to={`${props?.location?.pathname}?page=${currentPage + 1}`}
-          >
-            <Button type="primary">Sau</Button>
-          </Link>
-        </div>
       </div>
     </>
   );

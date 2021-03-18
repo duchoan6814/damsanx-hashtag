@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useMemo } from "react";
 import { Row, Col } from "antd";
 import ContentLyThuyet from "../contentLyThuyet";
 import ContentQuestion from "../commons/question";
@@ -21,8 +21,9 @@ const ContentBody = () => {
   const [detailData, setDetailData] = useState({});
   const [currentPage, setCurrentPage] = useState(0);
   const {
-    data: [data],
+    data: [data, setData],
   } = useContext(StoreContext);
+
   let { slug } = useParams();
   let query = useQuery();
 
@@ -46,29 +47,37 @@ const ContentBody = () => {
     }
   }, [currentPage]);
 
-  return (
-    <>
-      <ContentLyThuyet
-        hashtag={detailData?.hashtag}
-        content={get(detailData, `listLyThuyet[${currentPage - 1}].noiDung`)}
-        exam={get(detailData, `listLyThuyet[${currentPage - 1}].viDu`)}
-      />
-      <h3>Bài tập:</h3>
-      <Row className="list-question" gutter={[24, 24]}>
-        {get(detailData, `listLyThuyet[${currentPage - 1}].listCauHoi`, []).map(
-          (item) => (
-            <Col span={12}>
+  const renderDiemLyThuyet = useMemo(() => {
+    const dataTemp = data.find((item, index) => {
+      return convertSlug(get(item, "hashtag", "")) === slug;
+    });
+
+    return get(dataTemp, "listLyThuyet", []).map((item, index) => (
+      <div className="wrap_display">
+        <ContentLyThuyet
+          hashtag={dataTemp?.hashtag}
+          content={item?.noiDung}
+          exam={item?.viDu}
+        />
+        <h3>Ví Dụ:</h3>
+        <Row className="list-question" gutter={[24, 24]}>
+          {item?.listCauHoi.map((itemm) => (
+            <Col span={24}>
               <ContentQuestion
-                cauHoi={get(item, "cauHoi", "")}
-                dapAn={get(item, "dapAn", [])}
-                giaiThich={get(item, "giaiThich", "")}
-                dapAnDung={get(item, "dapAnDung", "")}
+                cauHoi={get(itemm, "cauHoi", "")}
+                dapAn={get(itemm, "dapAn", [])}
+                giaiThich={get(itemm, "giaiThich", "")}
+                dapAnDung={get(itemm, "dapAnDung", "")}
               />
             </Col>
-          )
-        )}
-      </Row>
-    </>
+          ))}
+        </Row>
+      </div>
+    ));
+  }, [slug]);
+
+  return (
+    <>{renderDiemLyThuyet}</>
   );
 };
 

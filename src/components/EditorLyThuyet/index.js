@@ -122,6 +122,7 @@ const EditorLyThuyet = (props) => {
   const renderPreview = useMemo(() => {
     return (
       <>
+        <h3>{dataEditor?.hashtag}</h3>
         {listText.map((item, index) => {
           return dataInput.length >= 1 ? (
             <>
@@ -134,7 +135,7 @@ const EditorLyThuyet = (props) => {
         })}
       </>
     );
-  }, [dataText, dataInput]);
+  }, [dataText, dataInput, dataEditor]);
 
   const uploadButton = useMemo(
     () => (
