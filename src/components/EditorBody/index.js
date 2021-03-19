@@ -16,7 +16,7 @@ import {
   Route,
   Link,
   withRouter,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 
 import EditorComponent from "../EditQuestion";
@@ -27,7 +27,7 @@ import { StoreContext } from "../../Context";
 const EditorBody = () => {
   const {
     dataEditor: [dataEditor, setDataEditor],
-    data: [ data, setData ]
+    data: [data, setData],
   } = useContext(StoreContext);
 
   const handleButtonThemDiemLyThuyet = (index) => {
@@ -83,19 +83,36 @@ const EditorBody = () => {
   };
 
   const handleButtonPreview = () => {
-    setData([
-      ...data,
-      dataEditor
-    ])
-  }
+    setData([...data, dataEditor]);
+
+    setDataEditor({
+      hashtag: "",
+      listLyThuyet: [
+        {
+          noiDung: "",
+          viDu: "",
+          listCauHoi: [
+            {
+              cauHoi: "",
+              dapAn: [],
+              dapAnDung: "A",
+              giaiThich: "",
+            },
+          ],
+        },
+      ],
+    } );
+  };
 
   return (
     <>
       <div className="wrap_header_of_body">
         <div className="top_side">
           <h2>Hashtag Name</h2>
-          <Button onClick={() =>handleButtonPreview()} icon={<EyeOutlined />} >
-            <Link to={`/hashtag/${convertSlug(dataEditor.hashtag)}?page=1`}>Preview</Link>
+          <Button onClick={() => handleButtonPreview()} icon={<EyeOutlined />}>
+            <Link to={`/hashtag/${convertSlug(dataEditor.hashtag)}?page=1`}>
+              Preview
+            </Link>
           </Button>
         </div>
         <Input onChange={onChangeHashTagName} placeholder="hashtag name..." />
