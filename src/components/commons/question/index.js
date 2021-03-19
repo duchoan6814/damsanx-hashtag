@@ -15,9 +15,6 @@ const Question = (props) => {
     setDisplayClass("none");
   }, [cauHoi]);
 
-  console.log('props', props);
-  
-
   const radioButtonChange = (e) => {
     setClassKetQua("");
     setKetQua("");

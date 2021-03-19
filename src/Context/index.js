@@ -1,5 +1,5 @@
 import React from "react";
-import dataMock from "../mockData/date.json";
+import dataMock from "../mockData/data.json";
 
 export const StoreContext = React.createContext(null);
 
@@ -9,7 +9,11 @@ export default ({ children }) => {
     hashtag: "",
     listLyThuyet: [
       {
-        noiDung: "",
+        noiDung: {
+          text: "",
+          listText: [],
+          image: []
+        },
         viDu: "",
         listCauHoi: [
           {
@@ -23,9 +27,12 @@ export default ({ children }) => {
     ],
   });
 
+  console.log('dataEditor: ', dataEditor);
+  
+
   const store = {
     data: [data, setData],
-    dataEditor: [dataEditor, setDataEditor]
+    editorState: [dataEditor, setDataEditor]
   };
 
   return (

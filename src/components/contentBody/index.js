@@ -56,7 +56,8 @@ const ContentBody = () => {
       <div className="wrap_display">
         <ContentLyThuyet
           hashtag={dataTemp?.hashtag}
-          content={item?.noiDung}
+          content={item?.noiDung?.listText}
+          listImage={item?.noiDung?.image}
           exam={item?.viDu}
         />
         <h3>Ví Dụ:</h3>

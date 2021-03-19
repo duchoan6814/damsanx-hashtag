@@ -26,7 +26,7 @@ import { StoreContext } from "../../Context";
 
 const EditorBody = () => {
   const {
-    dataEditor: [dataEditor, setDataEditor],
+    editorState: [dataEditor, setDataEditor],
     data: [data, setData],
   } = useContext(StoreContext);
 
@@ -89,7 +89,11 @@ const EditorBody = () => {
       hashtag: "",
       listLyThuyet: [
         {
-          noiDung: "",
+          noiDung: {
+            text: "",
+            listText: [],
+            image: []
+          },
           viDu: "",
           listCauHoi: [
             {

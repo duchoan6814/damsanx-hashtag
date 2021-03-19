@@ -119,7 +119,7 @@ const Editor = (props) => {
     UPLOAD_IMG: "",
   });
   const {
-    dataEditor: [dataEditor, setDataEditor],
+    editorState: [dataEditor, setDataEditor],
   } = useContext(StoreContext);
 
   // const {
@@ -239,7 +239,6 @@ const Editor = (props) => {
       const posKeyAnswer = arrAnswer.findIndex(
         (item) => get(item, `answerKey`, TYPE.ANSWER_KEY.A) === answerKey
       );
-      console.log("propskey", posKeyAnswer);
 
       const checkPos = posKeyAnswer >= 0 && posKeyAnswer < arrAnswer.length;
       _dataInput.answers[checkPos ? posKeyAnswer : 0].content = _value;
@@ -249,7 +248,6 @@ const Editor = (props) => {
     return setDataInput({ ..._dataInput });
   };
 
-  console.log("dataEditor", dataEditor);
 
   const handleChoiceAnswer = (dapAnChon) => {
     let _dapAnChon = dapAnChon;
@@ -341,7 +339,6 @@ const Editor = (props) => {
         console.log("line: 227: pushImageIntoArr");
         return;
       }
-      console.log(posAnswer);
       const lengthArrImg = get(
         _dataInput,
         `answers[${posAnswer}].arrImg.length`,

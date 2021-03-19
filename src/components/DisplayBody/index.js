@@ -23,8 +23,6 @@ const DisplayBody = (props) => {
   const [path, setPath] = useState("");
   const { data: [ data, setData ] } = useContext(StoreContext);
 
-  console.log(data);
-
   useEffect(() => {
     setCurrentPage(1);
   }, [path]);

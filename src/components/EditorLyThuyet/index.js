@@ -41,7 +41,7 @@ const getBase64 = (file) => {
 };
 const EditorLyThuyet = (props) => {
   const [dataInput, setDataInput] = useState([]);
-  const [listText, setListText] = useState([]);
+  const [listTextt, setListText] = useState([]);
   const [dataText, setDataText] = useState("");
   const [data, setData] = useState([]);
   const [isRenderLatex, setIsRenderLatex] = useState(true);
@@ -58,7 +58,7 @@ const EditorLyThuyet = (props) => {
   });
 
   const {
-    dataEditor: [dataEditor, setDataEditor],
+    editorState: [dataEditor, setDataEditor],
   } = useContext(StoreContext);
 
   const showModal = () => {
@@ -103,27 +103,68 @@ const EditorLyThuyet = (props) => {
     };
   }, [dataText, dataInput, renderLatex, isRenderLatex]);
 
-  const txaOnChange = (e) => {
-    setDataText(e.target.value);
-    setListText(e.target.value.split("image"));
+  useEffect(() => {
     setDataEditor({
       ...dataEditor,
       listLyThuyet: [
         ...dataEditor.listLyThuyet.slice(0, props.index),
         {
           ...dataEditor.listLyThuyet[props.index],
-          noiDung: e.target.value
+          noiDung: {
+            ...dataEditor.listLyThuyet[props.index].noiDung,
+            text: dataText,
+            listText: listTextt,
+            image: dataInput
+          }
         },
         ...dataEditor.listLyThuyet.slice(props.index + 1)
       ]
     });
+
+    // console.log('hello', dataText.split("image"));
+
+    // setDataEditor({
+    //   ...dataEditor,
+    //   listLyThuyet: [
+    //     ...dataEditor.listLyThuyet.slice(0, props.index),
+    //     {
+    //       ...dataEditor.listLyThuyet[props.index],
+    //       noiDung: {
+    //         ...dataEditor.listLyThuyet[props.index].noiDung,
+    //         listText: [...listTextt]
+    //       }
+    //     },
+    //     ...dataEditor.listLyThuyet.slice(props.index + 1)
+    //   ]
+    // });
+
+    // setDataEditor({
+    //   ...dataEditor,
+    //   listLyThuyet: [
+    //     ...dataEditor.listLyThuyet.slice(0, props.index),
+    //     {
+    //       ...dataEditor.listLyThuyet[props.index],
+    //       noiDung: {
+    //         ...dataEditor.listLyThuyet[props.index].noiDung,
+    //         image: dataInput
+    //       }
+    //     },
+    //     ...dataEditor.listLyThuyet.slice(props.index + 1)
+    //   ]
+    // });
+
+  }, [dataText, dataInput])
+
+  const txaOnChange = (e) => {
+    setDataText(e.target.value);
+    setListText(e.target.value.split("image"));
   };
 
   const renderPreview = useMemo(() => {
     return (
       <>
         <h3>{dataEditor?.hashtag}</h3>
-        {listText.map((item, index) => {
+        {listTextt.map((item, index) => {
           return dataInput.length >= 1 ? (
             <>
               <p>{item}</p>
@@ -196,8 +237,6 @@ const EditorLyThuyet = (props) => {
 
   const handleButtonRemove = (index) => {
     const _index = index;
-
-    console.log(_index);
 
     setDataInput(dataInput.filter((item, indexx) => indexx !== _index));
 
