@@ -121,38 +121,6 @@ const EditorLyThuyet = (props) => {
       ]
     });
 
-    // console.log('hello', dataText.split("image"));
-
-    // setDataEditor({
-    //   ...dataEditor,
-    //   listLyThuyet: [
-    //     ...dataEditor.listLyThuyet.slice(0, props.index),
-    //     {
-    //       ...dataEditor.listLyThuyet[props.index],
-    //       noiDung: {
-    //         ...dataEditor.listLyThuyet[props.index].noiDung,
-    //         listText: [...listTextt]
-    //       }
-    //     },
-    //     ...dataEditor.listLyThuyet.slice(props.index + 1)
-    //   ]
-    // });
-
-    // setDataEditor({
-    //   ...dataEditor,
-    //   listLyThuyet: [
-    //     ...dataEditor.listLyThuyet.slice(0, props.index),
-    //     {
-    //       ...dataEditor.listLyThuyet[props.index],
-    //       noiDung: {
-    //         ...dataEditor.listLyThuyet[props.index].noiDung,
-    //         image: dataInput
-    //       }
-    //     },
-    //     ...dataEditor.listLyThuyet.slice(props.index + 1)
-    //   ]
-    // });
-
   }, [dataText, dataInput])
 
   const txaOnChange = (e) => {

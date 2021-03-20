@@ -12,9 +12,7 @@ const ContentLyThuyet = ({ hashtag, content, listImage, exam }) => {
         {content.map((item, index) => {
           return (
             <>
-              <p>
-                <Latex>{item}</Latex>
-              </p>
+              <p><Latex>{item}</Latex></p>
               <img src={listImage[index]} />
             </>
           );
