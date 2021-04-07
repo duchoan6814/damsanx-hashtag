@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import Latex from "react-latex";
 import "./question.scss";
 import { Radio, Col, Button } from "antd";
@@ -9,6 +9,7 @@ const Question = (props) => {
   const [dapAnChon, setDapAnChon] = useState({});
   const [classKetQua, setClassKetQua] = useState("");
   const [displayClass, setDisplayClass] = useState("none");
+
   useEffect(() => {
     setClassKetQua("");
     setKetQua("");
@@ -63,23 +64,20 @@ const Question = (props) => {
   };
 
   const renderDapAn = () => {
-    
     return dapAn.map((item, index) => {
       return dapAnChon.index === index ? (
         <Radio className={`${classKetQua}`} value={index}>
-          <Latex>{item}</Latex>
+          {item}
         </Radio>
       ) : (
-        <Radio value={index}>
-          <Latex>{item}</Latex>
-        </Radio>
+        <Radio value={index}>{item}</Radio>
       );
     });
   };
 
   return (
     <div className="container-question">
-      <Latex>{cauHoi}</Latex>
+      <p>{cauHoi}</p>
       <Radio.Group onChange={radioButtonChange} name="radiogroup">
         {renderDapAn()}
       </Radio.Group>
@@ -91,7 +89,7 @@ const Question = (props) => {
         <p>{ketQua}</p>
       </div>
       <div className={`${displayClass} giai-thich`}>
-        <Latex>{giaiThich}</Latex>
+        <p>{giaiThich}</p>
       </div>
     </div>
   );

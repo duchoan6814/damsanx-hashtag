@@ -6,6 +6,7 @@ import React, {
   useMemo,
   useContext,
 } from "react";
+import { MathfieldComponent } from "react-mathlive";
 import {
   LoadingOutlined,
   PlusOutlined,
@@ -15,6 +16,7 @@ import { get } from "lodash";
 
 import "./EditorLyThuyet.scss";
 import { StoreContext } from "../../Context";
+import Latex from "react-latex";
 
 const { TextArea } = Input;
 
@@ -48,6 +50,7 @@ const EditorLyThuyet = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const [iamgeLatex, setImageLatex] = useState("");
   const [MESS_ERR, SET_MESS_ERR] = useState({
     UPLOAD_IMG: "",
   });
@@ -114,18 +117,21 @@ const EditorLyThuyet = (props) => {
             ...dataEditor.listLyThuyet[props.index].noiDung,
             text: dataText,
             listText: listTextt,
-            image: dataInput
-          }
+            image: dataInput,
+          },
         },
-        ...dataEditor.listLyThuyet.slice(props.index + 1)
-      ]
+        ...dataEditor.listLyThuyet.slice(props.index + 1),
+      ],
     });
-
-  }, [dataText, dataInput])
+  }, [dataText, dataInput]);
 
   const txaOnChange = (e) => {
     setDataText(e.target.value);
     setListText(e.target.value.split("image"));
+  };
+
+  const onChangeIamgeLatex = (e) => {
+    setImageLatex(e.target.value);
   };
 
   const renderPreview = useMemo(() => {
@@ -236,19 +242,36 @@ const EditorLyThuyet = (props) => {
   }, [dataInput]);
 
   return (
-    <Row gutter={20} className="ly_thuyet">
-      <Col span={8}>
-        <h2>Editor</h2>
-        <TextArea value={dataText} onChange={txaOnChange} rows={4} />
-        {renderListImage}
-      </Col>
-      <Col className="wrap_preview" span={16}>
-        <h2>Preview</h2>
-        <div className="preview_ly_thuyet">{renderPreview}</div>
-        <Button onClick={showModal} className="btn_upload_image">
-          Upload Image
-        </Button>
-      </Col>
+    <>
+      <Row gutter={20} className="ly_thuyet">
+        <Col span={8}>
+          <h2>Editor</h2>
+          <TextArea value={dataText} onChange={txaOnChange} rows={4} />
+          {renderListImage}
+        </Col>
+        <Col className="wrap_preview" span={16}>
+          <h2>Preview</h2>
+          <div className="preview_ly_thuyet">{renderPreview}</div>
+          <Button onClick={showModal} className="btn_upload_image">
+            Upload Image
+          </Button>
+        </Col>
+      </Row>
+      <Row gutter={20}>
+        <Col span={8}>
+          <MathfieldComponent
+            latex={dataText}
+            onChange={setDataText}
+            mathfieldConfig={{
+              virtualKeyboardMode: "manual",
+            }}
+          />
+        </Col>
+        <Col span={16}>
+          <div className="preview_image_latex"></div>
+        </Col>
+      </Row>
+
       <Modal
         title="Basic Modal"
         visible={isModalVisible}
@@ -279,7 +302,7 @@ const EditorLyThuyet = (props) => {
           )}
         </Upload>
       </Modal>
-    </Row>
+    </>
   );
 };
 

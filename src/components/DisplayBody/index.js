@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { Layout, Menu, Button, Carousel, Input } from "antd";
 
 import { ArrowLeftOutlined } from "@ant-design/icons";
@@ -18,10 +18,43 @@ import "../../App.css";
 import "../../App.scss";
 import { StoreContext } from "../../Context";
 
+let timeOut = 0;
+
 const DisplayBody = (props) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isRenderLatex, setIsRenderLatex] = useState(true);
   const [path, setPath] = useState("");
   const { data: [ data, setData ] } = useContext(StoreContext);
+
+  const renderLatex = useCallback(() => {
+    if (window && window.MathJax) {
+      if (typeof window.MathJax.Hub.Startup.Typeset === "function") {
+        window.MathJax.Hub.Startup.Typeset();
+      } else if (
+        typeof window.MathJax.InputJax.TeX.resetEquationNumbers === "function"
+      )
+        window.MathJax.InputJax.TeX.resetEquationNumbers();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (timeOut > 0) {
+      clearTimeout(timeOut);
+      timeOut = 0;
+    } else {
+      if (isRenderLatex) {
+        timeOut = setTimeout(() => {
+          renderLatex();
+          clearTimeout(timeOut);
+          timeOut = 0;
+        }, 1000);
+      }
+    }
+    return () => {
+      clearTimeout(timeOut);
+      timeOut = 0;
+    };
+  }, [renderLatex, isRenderLatex, path]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -36,14 +69,6 @@ const DisplayBody = (props) => {
         <Tag content={`#${item.hashtag}`} select={index === 0} />
       </Link>
     ));
-
-  const actionButtonSau = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
-  const actionButtonTruoc = () => {
-    setCurrentPage(currentPage - 1);
-  };
 
   return (
     <>
