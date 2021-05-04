@@ -17,6 +17,22 @@ import { get } from "lodash";
 import "./EditorLyThuyet.scss";
 import { StoreContext } from "../../Context";
 import Latex from "react-latex";
+import {
+  handleRemoveCommentLatexTag,
+  removeSpaceResidual,
+  removeBeginCenterTag,
+  removeMiniPageTag,
+  removeTabVarTag,
+  removeLoiGiaiTag,
+  removeNoindentTag,
+  handleLatexHeva,
+  handleDoubleBackSlash,
+  handleLatexHoac,
+  handleNhayKep,
+  handleTextBF,
+  handleRemoveImmini,
+  handleRemoveAllowdisplaybreaks
+} from "../../common/helperHandleLatex";
 
 const { TextArea } = Input;
 
@@ -106,6 +122,25 @@ const EditorLyThuyet = (props) => {
     };
   }, [dataText, dataInput, renderLatex, isRenderLatex]);
 
+  const handleRenderLatex = (latex) => {
+    let _latex = latex;
+    _latex = handleDoubleBackSlash(_latex);
+    _latex = handleNhayKep(_latex);
+    _latex = handleRemoveCommentLatexTag(_latex);
+    _latex = removeSpaceResidual(_latex);
+    _latex = removeBeginCenterTag(_latex);
+    _latex = removeMiniPageTag(_latex);
+    _latex = removeTabVarTag(_latex);
+    _latex = removeLoiGiaiTag(_latex);
+    _latex = removeNoindentTag(_latex);
+    _latex = handleRemoveImmini(_latex);
+    _latex = handleLatexHeva(_latex);
+    _latex = handleLatexHoac(_latex);
+    _latex = handleTextBF(_latex);
+    _latex = handleRemoveAllowdisplaybreaks(_latex);
+    return _latex;
+  };
+
   useEffect(() => {
     setDataEditor({
       ...dataEditor,
@@ -115,7 +150,7 @@ const EditorLyThuyet = (props) => {
           ...dataEditor.listLyThuyet[props.index],
           noiDung: {
             ...dataEditor.listLyThuyet[props.index].noiDung,
-            text: dataText,
+            text: handleRenderLatex(dataText),
             listText: listTextt,
             image: dataInput,
           },
@@ -123,11 +158,14 @@ const EditorLyThuyet = (props) => {
         ...dataEditor.listLyThuyet.slice(props.index + 1),
       ],
     });
+
+    console.log("datatext", dataText);
+    console.log("datacontext", listTextt);
   }, [dataText, dataInput]);
 
   const txaOnChange = (e) => {
     setDataText(e.target.value);
-    setListText(e.target.value.split("image"));
+    setListText(handleRenderLatex(e.target.value).split("image"));
   };
 
   const onChangeIamgeLatex = (e) => {
@@ -206,7 +244,7 @@ const EditorLyThuyet = (props) => {
   const pushImageIntoArr = (str) => {
     setDataInput([...dataInput, str]);
     setDataText(`${dataText}\nimage\n`);
-    setListText(dataText.split("image"));
+    setListText(handleRenderLatex(dataText).split("image"));
   };
 
   const handleButtonRemove = (index) => {
@@ -259,13 +297,14 @@ const EditorLyThuyet = (props) => {
       </Row>
       <Row gutter={20}>
         <Col span={8}>
-          <MathfieldComponent
+          <TextArea value={dataEditor.listLyThuyet[props.index].noiDung.text} />
+          {/* <MathfieldComponent
             latex={dataText}
             onChange={setDataText}
             mathfieldConfig={{
               virtualKeyboardMode: "manual",
             }}
-          />
+          /> */}
         </Col>
         <Col span={16}>
           <div className="preview_image_latex"></div>
