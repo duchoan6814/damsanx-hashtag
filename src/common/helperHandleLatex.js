@@ -174,9 +174,26 @@ export const handleLatexHeva = (latex) => {
 
 export const handleDoubleBackSlash = (latex) => {
   let _latex = latex;
-  _latex = _latex.replace(/\$\\\\\$/gm, '\\\\')
-  _latex = _latex.replace(/\\\\/gm, ' \\\\ ')
+  _latex = _latex.replace(/\$\\\\\$/gm, "\\\\");
+  _latex = _latex.replace(/\\\\/gm, " \\\\ ");
   _latex = _latex.replace(/(?<!\$)\\\\[^$]{0}/g, "$\\\\$");
+
+  let tempListOrigin = _latex.match(/(?<=\\begin)(.*?)(?=\\end)/gm);
+
+  try {
+    let tempListChange = tempListOrigin.map((i, index) => {
+      return i.replace(/\$\\\\\$/gm, "\\\\");
+    });
+
+    tempListOrigin.map((i, index) => {
+      _latex = _latex.replace(i, tempListChange[index]);
+    });
+  } catch (error) {
+    console.log('123', error);
+    
+  }
+
+  // _latex = _latex.replace(/(?<=\\begin)(.*?)(?=\\end)/gm, )
   return _latex;
 };
 
@@ -260,7 +277,7 @@ export const handleTextBF = (latex) => {
       let contentInLatex = listTemp[index]
         .split("")
         .splice(0, listDongNgoac[listDongNgoac.length - 1])
-        .join("")
+        .join("");
 
       listTemp[index] = replaceBetween(
         listTemp[index],
@@ -272,7 +289,6 @@ export const handleTextBF = (latex) => {
   });
 
   return listTemp.join("");
-
 };
 
 export const handleRemoveImmini = (latex) => {
