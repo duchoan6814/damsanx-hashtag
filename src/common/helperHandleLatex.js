@@ -174,6 +174,7 @@ export const handleLatexHeva = (latex) => {
 
 export const handleDoubleBackSlash = (latex) => {
   let _latex = latex;
+  _latex = _latex.replace(/\$\\\\\$/gm, '\\\\')
   _latex = _latex.replace(/\\\\/gm, ' \\\\ ')
   _latex = _latex.replace(/(?<!\$)\\\\[^$]{0}/g, "$\\\\$");
   return _latex;
