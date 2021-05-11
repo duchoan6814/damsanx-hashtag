@@ -1,0 +1,31 @@
+.wrap_header_of_body {
+  padding: 10px;
+  background-color: white;
+  border-radius: 10px;
+  
+  .top_side {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      span {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.button_them_diem_ly_thuyet  {
+  margin-top: 10px;
+}
+
+.wrap_list_diem_ly_thuyet {
+  background-color: white;
+  padding: 10px;
+  margin-top: 13px;
+  border-radius: 10px;
+
+  .wrap_list_cau_tra_loi {
+    overflow: auto;
+  }
+}

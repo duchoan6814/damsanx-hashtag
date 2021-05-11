@@ -23,6 +23,7 @@ import { convertSlug } from "./common/helper";
 
 import { get } from "lodash";
 import EditorBody from "./components/EditorBody";
+import EditorBodyPro from './components/EditorBodyPro';
 
 import DisplayBody from "./components/DisplayBody";
 
@@ -36,6 +37,7 @@ function App(props) {
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
           <Menu.Item key="1"><Link to="/hashtag">Nhà Chính</Link></Menu.Item>
           <Menu.Item key="2"><Link to="/editor">Editor</Link></Menu.Item>
+          <Menu.Item key="3"><Link to="/editor-pro">Editor Pro Ver</Link></Menu.Item>
           {/* <Menu.Item key="3">Đóng Góp</Menu.Item>  */}
         </Menu>
       </Header>
@@ -50,6 +52,9 @@ function App(props) {
           </Route>
           <Route path="/editor">
             <EditorBody />
+          </Route>
+          <Route path="/editor-pro">
+            <EditorBodyPro />
           </Route>
         </Switch>
         {/* <EditorBody /> */}
