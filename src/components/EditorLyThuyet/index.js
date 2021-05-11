@@ -6,6 +6,7 @@ import React, {
   useMemo,
   useContext,
 } from "react";
+import { MathfieldComponent } from "react-mathlive";
 import {
   LoadingOutlined,
   PlusOutlined,
@@ -15,6 +16,23 @@ import { get } from "lodash";
 
 import "./EditorLyThuyet.scss";
 import { StoreContext } from "../../Context";
+import Latex from "react-latex";
+import {
+  handleRemoveCommentLatexTag,
+  removeSpaceResidual,
+  removeBeginCenterTag,
+  removeMiniPageTag,
+  removeTabVarTag,
+  removeLoiGiaiTag,
+  removeNoindentTag,
+  handleLatexHeva,
+  handleDoubleBackSlash,
+  handleLatexHoac,
+  handleNhayKep,
+  handleTextBF,
+  handleRemoveImmini,
+  handleRemoveAllowdisplaybreaks
+} from "../../common/helperHandleLatex";
 
 const { TextArea } = Input;
 
@@ -48,6 +66,7 @@ const EditorLyThuyet = (props) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [loadingImage, setLoadingImage] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
+  const [iamgeLatex, setImageLatex] = useState("");
   const [MESS_ERR, SET_MESS_ERR] = useState({
     UPLOAD_IMG: "",
   });
@@ -103,6 +122,25 @@ const EditorLyThuyet = (props) => {
     };
   }, [dataText, dataInput, renderLatex, isRenderLatex]);
 
+  const handleRenderLatex = (latex) => {
+    let _latex = latex;
+    _latex = handleDoubleBackSlash(_latex);
+    _latex = handleNhayKep(_latex);
+    _latex = handleRemoveCommentLatexTag(_latex);
+    _latex = removeSpaceResidual(_latex);
+    _latex = removeBeginCenterTag(_latex);
+    _latex = removeMiniPageTag(_latex);
+    _latex = removeTabVarTag(_latex);
+    _latex = removeLoiGiaiTag(_latex);
+    _latex = removeNoindentTag(_latex);
+    _latex = handleRemoveImmini(_latex);
+    _latex = handleLatexHeva(_latex);
+    _latex = handleLatexHoac(_latex);
+    _latex = handleTextBF(_latex);
+    _latex = handleRemoveAllowdisplaybreaks(_latex);
+    return _latex;
+  };
+
   useEffect(() => {
     setDataEditor({
       ...dataEditor,
@@ -112,20 +150,26 @@ const EditorLyThuyet = (props) => {
           ...dataEditor.listLyThuyet[props.index],
           noiDung: {
             ...dataEditor.listLyThuyet[props.index].noiDung,
-            text: dataText,
+            text: handleRenderLatex(dataText),
             listText: listTextt,
-            image: dataInput
-          }
+            image: dataInput,
+          },
         },
-        ...dataEditor.listLyThuyet.slice(props.index + 1)
-      ]
+        ...dataEditor.listLyThuyet.slice(props.index + 1),
+      ],
     });
 
-  }, [dataText, dataInput])
+    console.log("datatext", dataText);
+    console.log("datacontext", listTextt);
+  }, [dataText, dataInput]);
 
   const txaOnChange = (e) => {
     setDataText(e.target.value);
-    setListText(e.target.value.split("image"));
+    setListText(handleRenderLatex(e.target.value).split("image"));
+  };
+
+  const onChangeIamgeLatex = (e) => {
+    setImageLatex(e.target.value);
   };
 
   const renderPreview = useMemo(() => {
@@ -200,7 +244,7 @@ const EditorLyThuyet = (props) => {
   const pushImageIntoArr = (str) => {
     setDataInput([...dataInput, str]);
     setDataText(`${dataText}\nimage\n`);
-    setListText(dataText.split("image"));
+    setListText(handleRenderLatex(dataText).split("image"));
   };
 
   const handleButtonRemove = (index) => {
@@ -236,19 +280,37 @@ const EditorLyThuyet = (props) => {
   }, [dataInput]);
 
   return (
-    <Row gutter={20} className="ly_thuyet">
-      <Col span={8}>
-        <h2>Editor</h2>
-        <TextArea value={dataText} onChange={txaOnChange} rows={4} />
-        {renderListImage}
-      </Col>
-      <Col className="wrap_preview" span={16}>
-        <h2>Preview</h2>
-        <div className="preview_ly_thuyet">{renderPreview}</div>
-        <Button onClick={showModal} className="btn_upload_image">
-          Upload Image
-        </Button>
-      </Col>
+    <>
+      <Row gutter={20} className="ly_thuyet">
+        <Col span={8}>
+          <h2>Editor</h2>
+          <TextArea value={dataText} onChange={txaOnChange} rows={4} />
+          {renderListImage}
+        </Col>
+        <Col className="wrap_preview" span={16}>
+          <h2>Preview</h2>
+          <div className="preview_ly_thuyet">{renderPreview}</div>
+          <Button onClick={showModal} className="btn_upload_image">
+            Upload Image
+          </Button>
+        </Col>
+      </Row>
+      <Row gutter={20}>
+        <Col span={8}>
+          <TextArea value={dataEditor.listLyThuyet[props.index].noiDung.text} />
+          {/* <MathfieldComponent
+            latex={dataText}
+            onChange={setDataText}
+            mathfieldConfig={{
+              virtualKeyboardMode: "manual",
+            }}
+          /> */}
+        </Col>
+        <Col span={16}>
+          <div className="preview_image_latex"></div>
+        </Col>
+      </Row>
+
       <Modal
         title="Basic Modal"
         visible={isModalVisible}
@@ -279,7 +341,7 @@ const EditorLyThuyet = (props) => {
           )}
         </Upload>
       </Modal>
-    </Row>
+    </>
   );
 };
 
